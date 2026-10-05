@@ -1,6 +1,6 @@
 # LAB 3: Fullstack Integration — NextJS + Express
-**Họ và tên:** Nguyễn Ngọc Gia Hân · **MSSV:** N23DCPT019
-**Môn học:** Lập trình Web
+**Họ và tên:** Nguyễn Ngọc Gia Hân · **MSSV:** N23DCPT019  
+**Môn học:** Lập trình Web  
 **Chủ đề:** Ứng dụng quản lý **bài viết và bình luận**: frontend NextJS (port 3000) giao tiếp với backend Express (port 5000).
 
 ---
