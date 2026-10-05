@@ -15,40 +15,50 @@ export default function PostsPage() {
   }, [isError]);
 
   return (
-    <div className="max-w-2xl mx-auto p-6 space-y-8 font-sans">
-      <header className="border-b pb-4">
-        <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100">
-          Quản lý bài viết (Lab 3 - Fullstack Integration)
+    <div className="max-w-6xl mx-auto px-4 sm:px-8 py-10 font-sans">
+      <header className="mb-10">
+        <span className="inline-block rounded-full bg-sky-100 text-sky-600 text-xs font-semibold px-3 py-1 mb-3">
+          Lab 3 · Fullstack Integration
+        </span>
+        <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-800">
+          Quản lý{' '}
+          <span className="bg-gradient-to-r from-pink-500 to-sky-500 bg-clip-text text-transparent">
+            bài viết
+          </span>
         </h1>
-        <p className="text-sm text-gray-500 mt-1">Next.js App Router + Express REST API</p>
+        <p className="mt-2 text-slate-500">Next.js App Router + Express REST API</p>
       </header>
 
-      {/* Form tạo bài viết */}
-      <PostForm />
+      <div className="grid gap-8 lg:grid-cols-[400px_1fr] items-start">
+        {/* Form tạo bài viết (cố định bên trái trên màn hình rộng) */}
+        <div className="lg:sticky lg:top-6">
+          <PostForm />
+        </div>
 
-      {/* Danh sách bài viết */}
-      <section className="space-y-4">
-        <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100">
-          Danh sách bài viết{posts ? ` (${posts.length})` : ''}
-        </h2>
+        {/* Danh sách bài viết */}
+        <section className="space-y-4">
+          <h2 className="text-lg font-semibold text-slate-800">
+            Danh sách bài viết{posts ? ` (${posts.length})` : ''}
+          </h2>
 
-        {isLoading && <p className="text-gray-500 text-sm">Đang tải...</p>}
+          {isLoading && <p className="text-slate-400 text-sm">Đang tải...</p>}
 
-        {isError && (
-          <p className="text-red-500 text-sm">
-            Không thể tải dữ liệu. Backend đã chạy ở port 5000 chưa?{' '}
-            <button onClick={() => refetch()} className="underline cursor-pointer">
-              Thử lại
-            </button>
-          </p>
-        )}
+          {isError && (
+            <p className="text-rose-600 text-sm">
+              Không thể tải dữ liệu. Backend đã chạy ở port 5000 chưa?{' '}
+              <button onClick={() => refetch()} className="underline cursor-pointer">
+                Thử lại
+              </button>
+            </p>
+          )}
 
-        {posts?.length === 0 && (
-          <p className="text-gray-500 text-sm italic">Chưa có bài viết nào.</p>
-        )}
+          {posts?.length === 0 && (
+            <p className="text-slate-400 text-sm italic">Chưa có bài viết nào.</p>
+          )}
 
-        {posts?.map((p) => <PostCard key={p.id} post={p} />)}
-      </section>
+          {posts?.map((p) => <PostCard key={p.id} post={p} />)}
+        </section>
+      </div>
     </div>
   );
 }

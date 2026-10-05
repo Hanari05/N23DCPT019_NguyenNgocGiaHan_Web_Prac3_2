@@ -1,0 +1,24 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "Bài viết đầu tiên",
+      "content": "Nội dung bài 1",
+      "author": "Admin"
+    },
+    {
+      "id": 2,
+      "title": "Hướng dẫn NextJS",
+      "content": "Nội dung bài 2",
+      "author": "Admin"
+    },
+    {
+      "id": 1791171324752,
+      "title": "Hnaaa",
+      "content": "đang ăn sáng",
+      "author": "Hanarinnn",
+      "createdAt": "2026-10-05T03:35:24.752Z"
+    }
+  ],
+  "comments": []
+}

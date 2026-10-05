@@ -12,13 +12,11 @@ const DATA_PATH = path.join(__dirname, 'data.json');
 /* -------------------------------------------------------------------------- */
 /*  Middleware                                                                */
 /* -------------------------------------------------------------------------- */
-/*
 app.use(cors({
   origin: FRONTEND_ORIGIN, // chỉ cho phép NextJS
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type']
 }));
-*/
 
 app.use(express.json());
 

@@ -50,7 +50,7 @@ export default function PostCard({ post }: { post: Post }) {
   const count = post.commentCount ?? 0;
 
   return (
-    <article className={`${cardClass} p-4 transition hover:shadow`}>
+    <article className={`${cardClass} p-4 transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-sky-200/60`}>
       {editing ? (
         <form onSubmit={handleSave} className="space-y-3">
           <div>
@@ -87,7 +87,7 @@ export default function PostCard({ post }: { post: Post }) {
             <button
               type="button"
               onClick={() => setEditing(false)}
-              className="px-4 py-1.5 text-sm rounded-md border border-gray-300 dark:border-gray-600 cursor-pointer"
+              className="px-4 py-1.5 text-sm rounded-md border border-pink-200 text-slate-700 cursor-pointer"
             >
               Huỷ
             </button>
@@ -122,7 +122,7 @@ export default function PostCard({ post }: { post: Post }) {
         </div>
       )}
 
-      <div className="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700">
+      <div className="mt-3 pt-3 border-t border-pink-100">
         <Link
           href={`/posts/${post.id}`}
           className="inline-block mb-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"

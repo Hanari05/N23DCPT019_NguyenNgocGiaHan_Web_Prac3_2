@@ -32,7 +32,7 @@ export default function PostForm() {
 
   return (
     <section className={`${cardClass} p-6`}>
-      <h2 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-100">
+      <h2 className="text-lg font-semibold mb-4 text-slate-800">
         Thêm bài viết mới
       </h2>
       <form onSubmit={handleSubmit} className="space-y-4">

@@ -18,6 +18,7 @@ N23DCPT019_NguyenNgocGiaHan_Web_Prac3b/
 │   ├── data.json               # Dữ liệu bài viết + bình luận (tự tạo khi chạy lần đầu)
 │   ├── package.json
 │   └── server.js               # Express :5000 — CORS, REST API, lưu file JSON
+├── docs/                       # Ảnh minh chứng thí nghiệm lỗi CORS (Bước 2)
 └── frontend/
     ├── app/
     │   ├── layout.tsx          # RootLayout: Providers (React Query) + Toaster
@@ -33,6 +34,7 @@ N23DCPT019_NguyenNgocGiaHan_Web_Prac3b/
     ├── lib/
     │   ├── api.ts              # Axios instance + getErrorMessage
     │   ├── queries.ts          # Toàn bộ useQuery / useMutation
+    │   ├── fetch-example.ts    # Ví dụ Bước 5: gọi API bằng fetch thuần (chỉ tham khảo)
     │   ├── types.ts            # Post, PostComment
     │   └── ui.ts               # Class Tailwind dùng chung
     ├── next.config.ts          # Proxy rewrites sang backend
@@ -109,6 +111,40 @@ Cấu hình tuỳ chọn: `backend/.env` (`PORT`, `FRONTEND_ORIGIN`) và `fronte
 
 ---
 
+## 🎨 Giao diện
+
+Giao diện sáng, tông **hồng pha xanh** trên nền trắng, bố cục rộng (`max-w-6xl`): trên màn hình lớn form đăng bài cố định bên trái, danh sách bài viết bên phải; trên điện thoại tự xếp thành một cột. Chỉ dùng class Tailwind, các class dùng chung nằm ở `frontend/lib/ui.ts` và màu nền ở `frontend/app/globals.css`.
+
+## ✅ Đối chiếu với đề Lab 3
+
+| Yêu cầu của đề | Trạng thái | Ghi chú |
+|---|---|---|
+| Tiết 1: dựng 2 server, `cors()` đúng cấu hình, `GET /api/posts` | ✅ | |
+| Tiết 1: tái hiện lỗi CORS, chụp màn hình, kết luận ở phía nào | ✅ | Ảnh trong `docs/` |
+| Tiết 1: proxy `rewrites()` (cách thay thế) | ✅ | Bật bằng `NEXT_PUBLIC_API_URL=` (rỗng) |
+| Tiết 2: `POST /api/posts` + validation 400 / 201 | ✅ | |
+| Tiết 2: form bằng `fetch` thuần (Bước 5) | ✅ | Ví dụ đầy đủ ở `frontend/lib/fetch-example.ts` (ứng dụng chính dùng axios) |
+| Tiết 2: axios + `lib/api.ts` (Bước 6) | ✅ | |
+| Tiết 3: `react-hot-toast`, `Toaster`, success / error / `toast.promise` | ✅ | |
+| Tiết 3: debug (logger middleware, log body), bảng lỗi thường gặp | ✅ | |
+| Tiết 4–5: `DELETE`, `confirm()`, nút Xoá, cập nhật không cần F5 | ✅ | Optimistic update có rollback |
+| Checklist nộp bài (6 mục) | ✅ | Không còn lỗi đỏ sau khi khôi phục `cors()` (ảnh trong `docs/`) |
+| Nâng cao 1 — PUT sửa bài + inline form | ✅ | |
+| Nâng cao 2 — React Query (`useQuery`, `useMutation`, `invalidateQueries`, `staleTime`) | ✅ | |
+| Nâng cao 3 — lưu `data.json` bằng `fs.promises` | ✅ | |
+| Nâng cao 4 — Bình luận (3 route, ô nhập, đếm số, trang `/posts/[id]`) | ✅ | "Real-time" bằng polling 5 giây |
+
+## 🎨 Cách đổi màu giao diện
+
+| Muốn đổi | Sửa ở | Cách làm |
+|---|---|---|
+| Màu nền trang (vệt hồng, vệt xanh) | `frontend/app/globals.css` | Đổi 3 biến `--glow-pink`, `--glow-blue`, `--page-bg` ở khối `:root` |
+| Màu chữ chung | `frontend/app/globals.css` | Đổi `--foreground` |
+| Màu nút, viền, ô nhập, card, liên kết | `frontend/lib/ui.ts` | Thay `pink` / `sky` bằng tên màu Tailwind khác (rose, purple, indigo, blue, cyan, teal...) |
+| Màu tiêu đề, huy hiệu ở trang chính | `frontend/app/posts/page.tsx` | Sửa các class `from-pink-500 to-sky-500`, `bg-sky-100 text-sky-600` |
+
+Ví dụ: muốn tông hồng + tím, thay `sky` thành `violet` trong `ui.ts` và `page.tsx`, đổi `--glow-blue` thành `#ece4ff`.
+
 ## 🔁 Dùng proxy thay cho CORS (Bước 3)
 
 Mặc định frontend gọi thẳng `http://localhost:5000` nên backend cần `cors()`. Để dùng proxy `rewrites()`, tạo `frontend/.env.local`:
@@ -121,13 +157,41 @@ Khi đó frontend gọi `/api/...` (cùng origin) và NextJS tự chuyển tiế
 
 ## 🧪 Thí nghiệm tái hiện lỗi CORS (Bước 2)
 
-1. Trong `backend/server.js`, comment khối `app.use(cors({...}))`, restart backend.
-2. Mở `http://localhost:3000/posts`, mở DevTools → Console, ghi lại thông báo lỗi.
-3. Khôi phục `cors()`, reload — lỗi biến mất.
+**Các bước thực hiện:**
 
-> **Kết luận:** lỗi CORS do **trình duyệt** chặn (phía client). Server vẫn nhận và xử lý request (xem log ở terminal backend); header `Access-Control-Allow-Origin` phải do server gửi về.
->
-> 📸 *Chèn ảnh chụp màn hình lỗi tại đây:* `docs/cors-error.png`
+1. Trong `backend/server.js`, comment khối `app.use(cors({...}))`, restart backend.
+2. Mở `http://localhost:3000/posts`, mở DevTools → Console và Network, ghi lại lỗi.
+3. Khôi phục `cors()`, restart backend, reload — lỗi biến mất.
+
+### Trước khi khắc phục (đã tắt `cors()`)
+
+**1. Đoạn code đã comment `cors()`**
+
+![Code đã tắt cors()](docs/cors-1-code-tat-cors.png)
+
+**2. Console: trình duyệt báo lỗi CORS** — origin `http://localhost:3000` gọi `http://localhost:5000/api/posts` bị chặn vì thiếu header `Access-Control-Allow-Origin`.
+
+![Console báo lỗi CORS](docs/cors-2-console.png)
+
+Lỗi lặp lại nhiều lần vì danh sách tự refetch mỗi 5 giây (`refetchInterval`) và React Query thử lại khi lỗi:
+
+![Console lỗi CORS lặp lại](docs/cors-2b-console-lap-lai.png)
+
+**3. Terminal backend: server vẫn nhận request** (`GET /api/posts`), không hề hỏng.
+
+![Terminal backend vẫn nhận request](docs/cors-3-terminal-backend.png)
+
+**4. Network → Headers: server trả `200 OK` nhưng Response headers không có `Access-Control-Allow-Origin`.**
+
+![Response headers thiếu Access-Control-Allow-Origin](docs/cors-4-network-headers.png)
+
+### Sau khi khôi phục `cors()`
+
+Console không còn lỗi đỏ, các request `posts` kết thúc thành công và có dữ liệu trả về (516 B).
+
+![Sau khi khôi phục cors()](docs/cors-5-sau-khoi-phuc.png)
+
+> **Kết luận:** lỗi CORS xảy ra ở **trình duyệt (client)**, không phải ở server. Server vẫn nhận và xử lý request, thậm chí trả `200 OK` (xem ảnh 3 và 4), nhưng vì response thiếu header `Access-Control-Allow-Origin` nên trình duyệt chặn không cho JavaScript đọc dữ liệu. Header này phải do **server** gửi về, bằng middleware `cors()`.
 
 ## ⚖️ `fetch` thuần so với `axios` (Bước 5 → 6)
 

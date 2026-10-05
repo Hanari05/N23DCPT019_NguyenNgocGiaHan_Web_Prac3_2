@@ -1,17 +1,22 @@
-// Các class Tailwind dùng chung để giao diện đồng nhất giữa các component
-export const inputClass =
-  'w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-transparent text-gray-900 dark:text-gray-100 border-gray-300 dark:border-gray-600';
+// Các class Tailwind dùng chung — tông hồng pha xanh.
+// ĐỔI MÀU: thay "pink" / "sky" bên dưới bằng tên màu Tailwind khác
+// (rose, fuchsia, purple, violet, indigo, blue, cyan, teal, emerald...).
+//   pink = màu chủ đạo 1 (viền, nút, tiêu đề)
+//   sky  = màu chủ đạo 2 (focus, liên kết, nút Sửa, đuôi gradient)
 
-export const labelClass = 'block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300';
+export const inputClass =
+  'w-full px-3.5 py-2.5 rounded-xl border border-pink-200 bg-white/80 text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-4 focus:ring-sky-200/70 focus:border-sky-400 transition';
+
+export const labelClass = 'block text-sm font-semibold mb-1.5 text-slate-600';
 
 export const cardClass =
-  'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm';
+  'bg-white/90 backdrop-blur border border-pink-100 rounded-2xl shadow-[0_8px_30px_-12px_rgba(99,160,255,0.35)]';
 
 export const primaryButtonClass =
-  'bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md transition duration-150 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed';
+  'bg-gradient-to-r from-pink-500 to-sky-500 hover:from-pink-600 hover:to-sky-600 text-white font-semibold rounded-xl shadow-md shadow-sky-300/40 transition disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed';
 
 export const dangerLinkClass =
-  'text-red-500 hover:text-red-700 text-sm font-medium px-3 py-1.5 rounded hover:bg-red-50 dark:hover:bg-red-950/30 transition shrink-0 cursor-pointer disabled:opacity-50';
+  'text-rose-600 hover:text-rose-800 text-sm font-medium px-3 py-1.5 rounded-lg hover:bg-rose-50 transition shrink-0 cursor-pointer disabled:opacity-50';
 
 export const editLinkClass =
-  'text-blue-600 hover:text-blue-800 text-sm font-medium px-3 py-1.5 rounded hover:bg-blue-50 dark:hover:bg-blue-950/30 transition shrink-0 cursor-pointer';
+  'text-sky-600 hover:text-sky-800 text-sm font-medium px-3 py-1.5 rounded-lg hover:bg-sky-50 transition shrink-0 cursor-pointer';

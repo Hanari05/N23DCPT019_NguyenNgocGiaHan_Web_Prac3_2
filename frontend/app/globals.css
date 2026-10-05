@@ -1,26 +1,38 @@
 @import "tailwindcss";
 
+/* Giao diện sáng: chỉ bật dark: khi có class .dark, nên không đổi theo chế độ tối của hệ điều hành */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ===== BẢNG MÀU NỀN — sửa 3 màu dưới đây để đổi tông trang =====
+   --glow-pink : vệt sáng hồng (góc trên trái)
+   --glow-blue : vệt sáng xanh (góc trên phải)
+   --page-bg   : màu nền chính                                      */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --glow-pink: #ffe0ec;
+  --glow-blue: #d9efff;
+  --page-bg: #fbf8ff;
+  --foreground: #334155; /* chữ: xám xanh (slate-700) */
+  color-scheme: light;
 }
 
 @theme inline {
-  --color-background: var(--background);
+  --color-background: var(--page-bg);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  background: var(--background);
+  min-height: 100vh;
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(900px 520px at 6% -10%, var(--glow-pink) 0%, transparent 60%),
+    radial-gradient(900px 520px at 100% 0%, var(--glow-blue) 0%, transparent 58%),
+    var(--page-bg);
+  background-attachment: fixed;
+}
+
+::selection {
+  background: #d7e8ff;
 }
