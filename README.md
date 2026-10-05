@@ -1,11 +1,7 @@
 # LAB 3: Fullstack Integration — NextJS + Express
-**MSSV:** N23DCPT019  
-**Họ và tên:** Nguyễn Ngọc Gia Hân  
-**Môn học:** Lập trình Web (4.1.LTW)
-
-Ứng dụng quản lý **bài viết và bình luận**: frontend NextJS (port 3000) giao tiếp với backend Express (port 5000).
-
-**Mức độ hoàn thành:** Tiết 1–5 (bắt buộc) ✅ · Nâng cao 1, 2, 3, 4 ✅
+**Họ và tên:** Nguyễn Ngọc Gia Hân · **MSSV:** N23DCPT019
+**Môn học:** Lập trình Web
+**Chủ đề:** Ứng dụng quản lý **bài viết và bình luận**: frontend NextJS (port 3000) giao tiếp với backend Express (port 5000).
 
 ---
 
@@ -111,10 +107,6 @@ Cấu hình tuỳ chọn: `backend/.env` (`PORT`, `FRONTEND_ORIGIN`) và `fronte
 
 ---
 
-## 🎨 Giao diện
-
-Giao diện sáng, tông **hồng pha xanh** trên nền trắng, bố cục rộng (`max-w-6xl`): trên màn hình lớn form đăng bài cố định bên trái, danh sách bài viết bên phải; trên điện thoại tự xếp thành một cột. Chỉ dùng class Tailwind, các class dùng chung nằm ở `frontend/lib/ui.ts` và màu nền ở `frontend/app/globals.css`.
-
 ## ✅ Đối chiếu với đề Lab 3
 
 | Yêu cầu của đề | Trạng thái | Ghi chú |
@@ -133,17 +125,6 @@ Giao diện sáng, tông **hồng pha xanh** trên nền trắng, bố cục r�
 | Nâng cao 2 — React Query (`useQuery`, `useMutation`, `invalidateQueries`, `staleTime`) | ✅ | |
 | Nâng cao 3 — lưu `data.json` bằng `fs.promises` | ✅ | |
 | Nâng cao 4 — Bình luận (3 route, ô nhập, đếm số, trang `/posts/[id]`) | ✅ | "Real-time" bằng polling 5 giây |
-
-## 🎨 Cách đổi màu giao diện
-
-| Muốn đổi | Sửa ở | Cách làm |
-|---|---|---|
-| Màu nền trang (vệt hồng, vệt xanh) | `frontend/app/globals.css` | Đổi 3 biến `--glow-pink`, `--glow-blue`, `--page-bg` ở khối `:root` |
-| Màu chữ chung | `frontend/app/globals.css` | Đổi `--foreground` |
-| Màu nút, viền, ô nhập, card, liên kết | `frontend/lib/ui.ts` | Thay `pink` / `sky` bằng tên màu Tailwind khác (rose, purple, indigo, blue, cyan, teal...) |
-| Màu tiêu đề, huy hiệu ở trang chính | `frontend/app/posts/page.tsx` | Sửa các class `from-pink-500 to-sky-500`, `bg-sky-100 text-sky-600` |
-
-Ví dụ: muốn tông hồng + tím, thay `sky` thành `violet` trong `ui.ts` và `page.tsx`, đổi `--glow-blue` thành `#ece4ff`.
 
 ## 🔁 Dùng proxy thay cho CORS (Bước 3)
 
